@@ -1,0 +1,269 @@
+{
+  "allergens": {
+    "glutine": {
+      "label": "Glutine",
+      "icon": "🌾",
+      "color": "#D4A853"
+    },
+    "uova": {
+      "label": "Uova",
+      "icon": "🥚",
+      "color": "#F5C842"
+    },
+    "latte": {
+      "label": "Latte",
+      "icon": "🥛",
+      "color": "#E8F4FD"
+    },
+    "soia": {
+      "label": "Soia",
+      "icon": "🫘",
+      "color": "#8DB87A"
+    },
+    "sedano": {
+      "label": "Sedano",
+      "icon": "🌿",
+      "color": "#5A9E6F"
+    },
+    "senape": {
+      "label": "Senape",
+      "icon": "🟡",
+      "color": "#E8C840"
+    },
+    "sesamo": {
+      "label": "Sesamo",
+      "icon": "🌰",
+      "color": "#C8A86B"
+    }
+  },
+
+  "ingredients": {
+    "farina_00": {
+      "label": "Farina 00",
+      "allergens": ["glutine"]
+    },
+    "lievito_birra": {
+      "label": "Lievito di birra",
+      "allergens": []
+    },
+    "sale": {
+      "label": "Sale",
+      "allergens": []
+    },
+    "zucchero": {
+      "label": "Zucchero",
+      "allergens": []
+    },
+    "uova_fresche": {
+      "label": "Uova fresche",
+      "allergens": ["uova"]
+    },
+    "latte_intero": {
+      "label": "Latte intero",
+      "allergens": ["latte"]
+    },
+    "burro": {
+      "label": "Burro",
+      "allergens": ["latte"]
+    },
+    "olio_girasole": {
+      "label": "Olio di girasole (per friggere)",
+      "allergens": []
+    },
+    "crema_pasticcera": {
+      "label": "Crema pasticcera",
+      "allergens": ["uova", "latte", "glutine"]
+    },
+    "crema_cioccolato": {
+      "label": "Crema al cioccolato",
+      "allergens": ["uova", "latte", "soia"]
+    },
+    "crema_pistacchio": {
+      "label": "Crema al pistacchio",
+      "allergens": ["latte"]
+    },
+    "marmellata_albicocca": {
+      "label": "Marmellata di albicocche",
+      "allergens": []
+    },
+    "zucchero_velo": {
+      "label": "Zucchero a velo",
+      "allergens": []
+    },
+    "pomodoro": {
+      "label": "Pomodoro San Marzano",
+      "allergens": []
+    },
+    "mozzarella": {
+      "label": "Mozzarella fior di latte",
+      "allergens": ["latte"]
+    },
+    "ricotta": {
+      "label": "Ricotta di mucca",
+      "allergens": ["latte"]
+    },
+    "salame": {
+      "label": "Salame napoletano",
+      "allergens": []
+    },
+    "pepe_nero": {
+      "label": "Pepe nero",
+      "allergens": []
+    },
+    "basilico": {
+      "label": "Basilico fresco",
+      "allergens": []
+    },
+    "olio_evo": {
+      "label": "Olio extravergine d'oliva",
+      "allergens": []
+    },
+    "parmigiano": {
+      "label": "Parmigiano Reggiano",
+      "allergens": ["latte"]
+    },
+    "prosciutto_cotto": {
+      "label": "Prosciutto cotto",
+      "allergens": []
+    }
+  },
+
+  "products": [
+    {
+      "id": "graffa-vuota",
+      "name": "Graffa Fritta",
+      "subtitle": "La classica napoletana",
+      "category": "graffe",
+      "description": "La nostra graffa fritta tradizionale, soffice e dorata, cosparsa di zucchero semolato. Impasto fatto a mano con lievitazione lenta.",
+      "image": "images/graffa-vuota.jpg",
+      "image_placeholder_color": "#F4A435",
+      "ingredients": [
+        "farina_00",
+        "lievito_birra",
+        "uova_fresche",
+        "latte_intero",
+        "burro",
+        "zucchero",
+        "sale",
+        "olio_girasole"
+      ],
+      "tags": ["vegetariano", "bestseller"]
+    },
+    {
+      "id": "graffa-crema",
+      "name": "Graffa con Crema",
+      "subtitle": "Pasticcera o cioccolato",
+      "category": "graffe",
+      "description": "Graffa fritta ripiena di crema pasticcera artigianale, preparata ogni mattina con uova fresche e vaniglia naturale. Disponibile anche con crema al cioccolato.",
+      "image": "images/graffa-crema.jpg",
+      "image_placeholder_color": "#E8C040",
+      "ingredients": [
+        "farina_00",
+        "lievito_birra",
+        "uova_fresche",
+        "latte_intero",
+        "burro",
+        "zucchero",
+        "sale",
+        "olio_girasole",
+        "crema_pasticcera"
+      ],
+      "variants": [
+        {
+          "name": "Crema pasticcera",
+          "ingredients_extra": ["crema_pasticcera"]
+        },
+        {
+          "name": "Crema al cioccolato",
+          "ingredients_extra": ["crema_cioccolato"]
+        },
+        {
+          "name": "Crema al pistacchio",
+          "ingredients_extra": ["crema_pistacchio"]
+        }
+      ],
+      "tags": ["vegetariano"]
+    },
+    {
+      "id": "graffa-marmellata",
+      "name": "Graffa con Marmellata",
+      "subtitle": "Albicocca del Vesuvio",
+      "category": "graffe",
+      "description": "Graffa fritta farcita con marmellata di albicocche prodotta con frutti del Vesuvio. Un classico intramontabile.",
+      "image": "images/graffa-marmellata.jpg",
+      "image_placeholder_color": "#F07830",
+      "ingredients": [
+        "farina_00",
+        "lievito_birra",
+        "uova_fresche",
+        "latte_intero",
+        "burro",
+        "zucchero",
+        "sale",
+        "olio_girasole",
+        "marmellata_albicocca",
+        "zucchero_velo"
+      ],
+      "tags": ["vegetariano", "senza-latte"]
+    },
+    {
+      "id": "calzone-pomodoro-mozzarella",
+      "name": "Calzone Fritto",
+      "subtitle": "Pomodoro e Mozzarella",
+      "category": "calzoni",
+      "description": "Calzone fritto con pomodoro San Marzano e mozzarella fior di latte. Impasto croccante fuori, filante dentro. Il simbolo della street food napoletana.",
+      "image": "images/calzone-pomodoro.jpg",
+      "image_placeholder_color": "#C0392B",
+      "ingredients": [
+        "farina_00",
+        "lievito_birra",
+        "sale",
+        "olio_evo",
+        "olio_girasole",
+        "pomodoro",
+        "mozzarella",
+        "basilico"
+      ],
+      "tags": ["vegetariano"]
+    },
+    {
+      "id": "calzone-ricotta-salame",
+      "name": "Calzone Fritto",
+      "subtitle": "Ricotta e Salame",
+      "category": "calzoni",
+      "description": "La versione più ricca: calzone fritto con ricotta fresca e salame napoletano. Abbinamento classico e irresistibile.",
+      "image": "images/calzone-ricotta-salame.jpg",
+      "image_placeholder_color": "#8B2E2E",
+      "ingredients": [
+        "farina_00",
+        "lievito_birra",
+        "sale",
+        "olio_evo",
+        "olio_girasole",
+        "ricotta",
+        "salame",
+        "pepe_nero"
+      ],
+      "tags": []
+    },
+    {
+      "id": "calzone-prosciutto-mozzarella",
+      "name": "Calzone Fritto",
+      "subtitle": "Prosciutto e Mozzarella",
+      "category": "calzoni",
+      "description": "Calzone fritto con prosciutto cotto e mozzarella filante. Gusto delicato e avvolgente.",
+      "image": "images/calzone-prosciutto.jpg",
+      "image_placeholder_color": "#B05070",
+      "ingredients": [
+        "farina_00",
+        "lievito_birra",
+        "sale",
+        "olio_evo",
+        "olio_girasole",
+        "prosciutto_cotto",
+        "mozzarella"
+      ],
+      "tags": []
+    }
+  ]
+}

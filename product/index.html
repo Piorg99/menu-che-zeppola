@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prodotto — Menu</title>
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #fdfbf7; /* Bianco avorio caldo */
+      --surface:   #ffffff;
+      --card:      #ffffff;
+      --border:    #e2e8f0;
+      --yellow:    #f5c518; /* Il giallo del logo */
+      --blue:      #00b5e2; /* L'azzurro del logo */
+      --dark:      #1a202c; /* Blu notte scuro per i testi */
+      --muted:      #718096;
+      --radius:     20px;
+      --radius-sm:  10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      touch-action: manipulation;
+    }
+
+    /* ── HERO IMAGE ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: clamp(220px, 45vw, 340px);
+      overflow: hidden;
+      background: #f1f5f9;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity .6s ease;
+    }
+
+    .hero-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(3rem, 10vw, 5rem);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(253, 251, 247, 1) 100%
+      );
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+      background: var(--yellow);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 99px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 0 clamp(1rem, 4vw, 1.5rem) 3rem;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .product-header {
+      margin-top: -2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .product-tags {
+      display: flex;
+      gap: .45rem;
+      flex-wrap: wrap;
+      margin-bottom: .7rem;
+    }
+
+    .tag {
+      font-size: .7rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.35rem 0.8rem;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+    }
+    .tag.vegetariano { border-color: #48bb78; color: #2f855a; background: #f0fff4; }
+    .tag.bestseller   { border-color: var(--yellow); color: #b7791f; background: #fffdf0; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 6vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--dark);
+      margin-bottom: .2rem;
+    }
+
+    .subtitle {
+      font-size: clamp(.9rem, 3vw, 1.1rem);
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: 1.1rem;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .description {
+      font-size: clamp(.88rem, 2.5vw, 0.95rem);
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── SECTIONS ── */
+    .section-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.85rem;
+    }
+
+    /* ── VARIANTS ── */
+    .variants { margin-bottom: 1.75rem; }
+
+    .variant-list {
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+    }
+
+    .variant-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .85rem 1rem;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .variant-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    /* ── INGREDIENTS ── */
+    .ingredients-section { margin-bottom: 1.75rem; }
+
+    .ingredients-grid {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .ingredient-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      padding: .75rem .9rem;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: clamp(.82rem, 2.5vw, .9rem);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .ingredient-name {
+      color: var(--dark);
+      font-weight: 500;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ingredient-allergens {
+      display: flex;
+      gap: .3rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .allergen-chip {
+      font-size: .62rem;
+      font-weight: 700;
+      padding: .2rem .5rem;
+      border-radius: 6px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: var(--muted);
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    /* ── ALLERGENS SUMMARY ── */
+    .allergens-section { margin-bottom: 1.75rem; }
+
+    .allergens-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .5rem;
+    }
+
+    @media (min-width: 400px) {
+      .allergens-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .allergen-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .75rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .allergen-icon { font-size: 1.25rem; line-height: 1; flex-shrink: 0; }
+
+    .allergen-label {
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .no-allergens {
+      font-size: .88rem;
+      font-weight: 500;
+      color: #2f855a;
+      padding: .8rem 1rem;
+      background: #f0fff4;
+      border: 1px solid #c6f6d5;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ── WARNING ── */
+    .warning-box {
+      background: #fffaf0;
+      border: 1px solid #fbd38d;
+      border-radius: var(--radius-sm);
+      padding: .9rem 1rem;
+      font-size: clamp(.76rem, 2.2vw, .82rem);
+      color: #dd6b20;
+      line-height: 1.55;
+      margin-bottom: 2rem;
+    }
+    .warning-box strong { display: block; margin-bottom: .25rem; color: #c05621; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      background: #f8fafc;
+    }
+
+    /* ── LOADING / ERROR ── */
+    #loading {
+      min-height: 80dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      color: var(--muted);
+    }
+    .spinner {
+      width: 36px; height: 36px;
+      border: 3px solid #e2e8f0;
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #error-msg {
+      display: none;
+      min-height: 80dvh;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: .75rem;
+      color: var(--muted);
+      padding: 2rem;
+      text-align: center;
+    }
+    #error-msg h2 { color: var(--dark); font-family: 'Playfair Display', serif; }
+
+    #main-content { display: none; }
+
+    /* ── ANIMATE IN ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp .45s ease forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .2s; }
+    .delay-3 { animation-delay: .3s; }
+    .delay-4 { animation-delay: .4s; }
+  </style>
+</head>
+<body>
+
+  <div id="loading">
+    <div class="spinner"></div>
+    <span>Caricamento prodotto…</span>
+  </div>
+
+  <div id="error-msg">
+    <h2>Prodotto non trovato</h2>
+    <p>Il prodotto che stai cercando non esiste o è stato rimosso.</p>
+  </div>
+
+  <div id="main-content">
+    <div class="hero" id="hero">
+      <span class="category-badge" id="category-badge"></span>
+      <img id="hero-img" src="" alt="" style="display:none" />
+      <div class="hero-placeholder" id="hero-placeholder"></div>
+    </div>
+
+    <div class="content">
+      <div class="product-header">
+        <div class="product-tags" id="product-tags"></div>
+        <h1 id="product-name" class="fade-up"></h1>
+        <p class="subtitle fade-up delay-1" id="product-subtitle"></p>
+        <p class="description fade-up delay-2" id="product-description"></p>
+      </div>
+
+      <div class="variants fade-up delay-3" id="variants-section" style="display:none">
+        <p class="section-title">Varianti disponibili</p>
+        <div class="variant-list" id="variant-list"></div>
+      </div>
+
+      <div class="ingredients-section fade-up delay-3">
+        <p class="section-title">Ingredienti</p>
+        <div class="ingredients-grid" id="ingredients-grid"></div>
+      </div>
+
+      <div class="allergens-section fade-up delay-4">
+        <p class="section-title">Allergeni presenti</p>
+        <div class="allergens-grid" id="allergens-grid"></div>
+      </div>
+
+      <div class="warning-box">
+        <strong>⚠️ Avvertenza per allergeni</strong>
+        Questo prodotto è realizzato in un laboratorio dove si utilizzano tutti gli allergeni principali. Se soffri di allergie o intolleranze gravi, ti invitiamo a contattarci prima dell'acquisto.
+      </div>
+    </div>
+
+    <footer>
+      <p>Informazioni aggiornate al momento della pubblicazione.<br/>Per allergie severe contattare direttamente il locale.</p>
+    </footer>
+  </div>
+
+  <script>
+    const DATA_URL = '../data/products.json';
+
+    // Legge ?id=xxx dall'URL
+    function getProductId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    async function loadData() {
+      const res = await fetch(DATA_URL);
+      if (!res.ok) throw new Error('Dati non disponibili');
+      return res.json();
+    }
+
+    function collectAllergens(product, data) {
+      const allergenSet = new Set();
+      product.ingredients.forEach(ingId => {
+        const ing = data.ingredients[ingId];
+        if (ing) ing.allergens.forEach(a => allergenSet.add(a));
+      });
+      // Aggiungi allergens dalle varianti se presenti
+      if (product.variants) {
+        product.variants.forEach(v => {
+          (v.ingredients_extra || []).forEach(ingId => {
+            const ing = data.ingredients[ingId];
+            if (ing) ing.allergens.forEach(a => allergenSet.add(a));
+          });
+        });
+      }
+      return [...allergenSet];
+    }
+
+    function categoryLabel(cat) {
+      return cat === 'graffe' ? '🍩 Graffe' : cat === 'calzoni' ? '🫓 Calzoni' : cat;
+    }
+
+    function render(product, data) {
+      // Hero
+      document.title = `${product.name} — ${product.subtitle}`;
+      document.getElementById('category-badge').textContent = categoryLabel(product.category);
+
+      const imgEl = document.getElementById('hero-img');
+      const placeholder = document.getElementById('hero-placeholder');
+      const heroEl = document.getElementById('hero');
+      
+      // Colore di sfondo di riserva leggero per il design chiaro
+      heroEl.style.backgroundColor = '#f1f5f9';
+      placeholder.textContent = product.category === 'graffe' ? '🍩' : '🫓';
+
+      imgEl.onload = () => {
+        placeholder.style.display = 'none';
+        imgEl.style.display = 'block';
+        imgEl.style.opacity = 1;
+      };
+      imgEl.onerror = () => { /* lascia il placeholder */ };
+      imgEl.src = product.image;
+      imgEl.alt = product.name;
+
+      // Header
+      document.getElementById('product-name').textContent = product.name;
+      document.getElementById('product-subtitle').textContent = product.subtitle;
+      document.getElementById('product-description').textContent = product.description;
+
+      // Tags
+      const tagsEl = document.getElementById('product-tags');
+      (product.tags || []).forEach(t => {
+        const el = document.createElement('span');
+        el.className = `tag ${t}`;
+        el.textContent = t === 'vegetariano' ? '🌿 Vegetariano' : t === 'bestseller' ? '⭐ Best Seller' : t;
+        tagsEl.appendChild(el);
+      });
+
+      // Varianti
+      if (product.variants && product.variants.length) {
+        document.getElementById('variants-section').style.display = '';
+        const list = document.getElementById('variant-list');
+        product.variants.forEach(v => {
+          const el = document.createElement('div');
+          el.className = 'variant-item';
+          el.innerHTML = `<span class="variant-dot"></span><span>${v.name}</span>`;
+          list.appendChild(el);
+        });
+      }
+
+      // Ingredienti con chip allergeni
+      const grid = document.getElementById('ingredients-grid');
+      product.ingredients.forEach(ingId => {
+        const ing = data.ingredients[ingId];
+        if (!ing) return;
+        const row = document.createElement('div');
+        row.className = 'ingredient-row';
+        const chips = ing.allergens.map(a => {
+          const al = data.allergens[a];
+          return `<span class="allergen-chip">${al ? al.icon + ' ' + al.label : a}</span>`;
+        }).join('');
+        row.innerHTML = `
+          <span class="ingredient-name">${ing.label}</span>
+          <span class="ingredient-allergens">${chips}</span>
+        `;
+        grid.appendChild(row);
+      });
+
+      // Allergens summary
+      const allergenIds = collectAllergens(product, data);
+      const allergenGrid = document.getElementById('allergens-grid');
+      if (allergenIds.length === 0) {
+        allergenGrid.innerHTML = `<div class="no-allergens">✅ Nessun allergene principale rilevato</div>`;
+      } else {
+        allergenIds.forEach(aId => {
+          const al = data.allergens[aId];
+          if (!al) return;
+          const card = document.createElement('div');
+          card.className = 'allergen-card';
+          card.innerHTML = `<span class="allergen-icon">${al.icon}</span><span class="allergen-label">${al.label}</span>`;
+          allergenGrid.appendChild(card);
+        });
+      }
+    }
+
+    async function init() {
+      const productId = getProductId();
+      if (!productId) {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error-msg').style.display = 'flex';
+        return;
+      }
+      try {
+        const data = await loadData();
+        const product = data.products.find(p => p.id === productId);
+        if (!product) throw new Error('Prodotto non trovato');
+
+        render(product, data);
+
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+      } catch (e) {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error-msg').style.display = 'flex';
+        console.error(e);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
